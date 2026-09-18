@@ -119,11 +119,29 @@ class Udas(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    #: Field names (UDA or generic) which identify a task in the remote
-    #: service. There is no default on purpose: an empty unique key matches
-    #: every pending task in the user's database, so a service which forgets
-    #: it must fail rather than run.
+    #: Names of the UDA fields which identify a task in the remote service.
+    #: There is no default on purpose: an empty unique key matches every
+    #: pending task in the user's database, so a service which forgets it must
+    #: fail rather than run.
     UNIQUE_KEY: ClassVar[tuple[str, ...]]
+
+    @classmethod
+    def __pydantic_init_subclass__(cls, **kwargs: Any) -> None:
+        """Reject a unique key which names something other than a declared UDA.
+
+        Task.unique_identifier is only called during synchronization, so an
+        unchecked unique key raises a KeyError on the user's machine rather
+        than in the service's tests.
+        """
+        unique_key = getattr(cls, "UNIQUE_KEY", None)
+        if unique_key is None:
+            return
+        undeclared = [name for name in unique_key if name not in cls.model_fields]
+        if undeclared:
+            raise TypeError(
+                f"{cls.__name__}.UNIQUE_KEY names undeclared fields: "
+                f"{', '.join(undeclared)}"
+            )
 
     @classmethod
     def get_udas(cls) -> dict[str, dict[str, str]]:

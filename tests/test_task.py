@@ -122,6 +122,26 @@ def test_get_unique_key():
     assert SampleTask.get_unique_key() == ("sampleurl",)
 
 
+def test_unique_key_rejects_a_misspelled_uda():
+    with pytest.raises(
+        TypeError, match="UNIQUE_KEY names undeclared fields: sampleurl"
+    ):
+
+        class MisspelledUdas(Udas):
+            UNIQUE_KEY = ("sampleurl",)
+
+            sampleurll: str | None = None
+
+
+def test_unique_key_rejects_a_generic_field():
+    with pytest.raises(TypeError, match="UNIQUE_KEY names undeclared fields: project"):
+
+        class GenericKeyUdas(Udas):
+            UNIQUE_KEY = ("project",)
+
+            sampleurl: str | None = None
+
+
 def test_unique_identifier_covers_only_the_unique_key():
     task = SampleTask(
         project="foundation",
