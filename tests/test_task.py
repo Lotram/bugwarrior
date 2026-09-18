@@ -113,7 +113,7 @@ def test_base_udas_has_no_udas():
 
 
 def test_task_exposes_the_udas_of_its_udas_model():
-    assert SampleTask.udas_model() is SampleUdas
+    assert SampleTask.get_udas_model() is SampleUdas
     assert SampleTask.get_udas() == SampleUdas.get_udas()
     assert Task.get_udas() == {}
 
