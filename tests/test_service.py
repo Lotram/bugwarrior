@@ -7,7 +7,6 @@ import unittest.mock
 import pytest
 
 from bugwarrior import services
-from bugwarrior.config import ServiceConfig
 
 from .base import DumbService, make_issue
 from .services.base import get_mock_service
@@ -87,20 +86,6 @@ class TestService:
             latest_documented = float(match.groupdict()["version"])
 
         assert latest_documented == services.LATEST_API_VERSION
-
-    def test_api_v1_keyring_service_backwards_compatibility(self):
-        class LegacyService:
-            API_VERSION = 1.0
-
-            @staticmethod
-            def get_keyring_service(config):
-                return f"legacy://{config.target}"
-
-        service_config = ServiceConfig(service="legacy", target="legacy-target")
-        with unittest.mock.patch(
-            "bugwarrior.config.schema.get_service", return_value=LegacyService
-        ):
-            assert service_config.keyring_service == "legacy://legacy-target"
 
 
 class TestIssue:

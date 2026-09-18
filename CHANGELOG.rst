@@ -4,8 +4,7 @@ Unreleased
 Highlights
 ==========
 - Deprecation of the --interactive flag. All invocations are now interactive. (https://github.com/GothenburgBitFactory/bugwarrior/pull/1204)
-- Service API 2.0 (with backwards compatiblity for 1.0 services). See https://bugwarrior.readthedocs.io/en/stable/other-services/api.html#changelog. (https://github.com/GothenburgBitFactory/bugwarrior/pull/1209)
-- Services now map a foreign record to a typed Task model rather than a plain dictionary, and declare their UDAs as fields of that model rather than as a separate UDAS dictionary. (https://github.com/GothenburgBitFactory/bugwarrior/pull/1226)
+- Service API 2.0. Services implementing the 1.0 API no longer work. See https://bugwarrior.readthedocs.io/en/stable/other-services/api.html#changelog. (https://github.com/GothenburgBitFactory/bugwarrior/pull/1209, https://github.com/GothenburgBitFactory/bugwarrior/pull/1226)
 - A field template which cannot produce a valid value for its field now reports a configuration error naming the template and the field, instead of writing the rendered string to the record. (https://github.com/GothenburgBitFactory/bugwarrior/pull/1226)
 
 Dependency Updates

@@ -12,7 +12,8 @@ warning, release notes, or semantic version bumping.
 
 .. automodule:: bugwarrior.task
    :members:
-   :exclude-members: __init__,model_config
+   :exclude-members: __init__,model_config,to_taskwarrior_data,get_udas,
+                     get_udas_model,get_unique_key,unique_identifier
    :member-order: bysource
 
 .. automodule:: bugwarrior.config
@@ -42,9 +43,7 @@ v2.0
 - Removed the type parameter from ``Service``. Subclasses declare
   ``class MyService(Service)`` rather than ``class MyService(Service[MyIssue])``.
 - Removed ``Issue.parse_date(date)``. A date field accepts the service's raw
-  string and parses it, adding UTC when the string carries no timezone. Use
-  ``bugwarrior.task.coerce_datetime`` if you need the datetime before the task
-  is built.
+  string and parses it, adding UTC when the string carries no timezone.
 - Removed ``Service.get_keyring_service(config)``. Service configurations should
   define ``KEYRING_SERVICE`` instead.
 - Added ``ServiceConfig.KEYRING_SERVICE`` as a format string for generating the
