@@ -104,6 +104,17 @@ class Udas(BaseModel):
     without UDAs uses, and the default for Task. A service subclasses it to
     declare its own UDAs, and the unique key which identifies a task in the
     remote service.
+
+    The field annotation decides the Taskwarrior UDA type. An Optional is
+    unwrapped first, so "str | None" declares a string UDA:
+
+    - datetime.datetime and datetime.date -> date
+    - datetime.timedelta -> duration
+    - int, float and bool -> numeric
+    - anything else, str included -> string
+
+    The field title becomes the UDA label, and the field name becomes the
+    label when the field has no title.
     """
 
     model_config = ConfigDict(extra="forbid")
@@ -189,4 +200,5 @@ class Task(BaseModel):
     uuid: str | None = None
     wait: IssueDatetime = None
 
+    #: The service's :class:`Udas` subclass.
     udas: Udas = Field(default_factory=Udas)
