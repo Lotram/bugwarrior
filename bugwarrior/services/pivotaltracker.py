@@ -182,7 +182,7 @@ class PivotalTrackerService(Service):
                     ),
                     "blockers": self.blockers(blockers),
                 }
-                yield self.process_record(story, extra)
+                yield self.get_task_for_record(story, extra)
 
     def api_request(self, endpoint: str, params: dict[str, Any] | None = None) -> Any:
         """

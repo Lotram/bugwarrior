@@ -143,4 +143,4 @@ class ClickupService(Service):
     def issues(self) -> Iterator[Task]:
         for task in self.client.get_tasks_for_team(self.config.team_id):
             if self.is_assigned(task):
-                yield self.process_record(task)
+                yield self.get_task_for_record(task)

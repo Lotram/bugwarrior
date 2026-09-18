@@ -58,7 +58,7 @@ def extra():
 class TestGithubIssue:
     def test_draft(self, service, record, extra):
         record["draft"] = True
-        task = service.process_record(record, extra)
+        task = service.get_task_for_record(record, extra)
 
         expected = {
             "annotations": [],

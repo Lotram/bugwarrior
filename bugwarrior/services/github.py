@@ -469,4 +469,4 @@ class GithubService(Service):
                 "body": self.body(issue),
                 "namespace": self.config.username,
             }
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)

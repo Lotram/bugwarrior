@@ -226,7 +226,7 @@ class BitbucketService(Service):
                 "url": url,
                 "annotations": self.get_annotations(tag, issue, url),
             }
-            yield self.process_record(issue, extras)
+            yield self.get_task_for_record(issue, extras)
 
         if self.config.include_merge_requests:
             pull_requests = functools.reduce(
@@ -258,4 +258,4 @@ class BitbucketService(Service):
                     "url": url,
                     "annotations": self.get_annotations(tag, issue, url),
                 }
-                yield self.process_record(issue, extras)
+                yield self.get_task_for_record(issue, extras)

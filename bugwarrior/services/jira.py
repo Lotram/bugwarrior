@@ -424,4 +424,4 @@ class JiraService(Service):
             if self.config.version > 4:
                 url = self.config.base_uri + "/browse/" + case.raw["key"]
                 extra["annotations"] = self.annotations(case, url)
-            yield self.process_record(case.raw, extra)
+            yield self.get_task_for_record(case.raw, extra)

@@ -96,7 +96,7 @@ class TestGerritIssue:
 
     def test_work_in_progress(self, service, record, extra):
         record["work_in_progress"] = True
-        task = service.process_record(record, extra)
+        task = service.get_task_for_record(record, extra)
 
         expected = {
             "annotations": [],

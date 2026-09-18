@@ -329,7 +329,7 @@ class Service(abc.ABC):
             # mark tags as set, and unset fields are left out of the record.
             task.tags = [*task.tags, *added_tags]
 
-    def process_record(
+    def get_task_for_record(
         self, record: dict[str, Any], extra: dict[str, Any] | None = None
     ) -> "Task":
         """Map a foreign record to a task and apply the user's templates.
@@ -347,7 +347,7 @@ class Service(abc.ABC):
     def issues(self) -> Iterator["Task"]:
         """Yield a task for each issue held by a remote service.
 
-        Fetch foreign records and pass each through :meth:`process_record`,
+        Fetch foreign records and pass each through :meth:`get_task_for_record`,
         which maps it to a Task and applies the user's templates.
         """
         raise NotImplementedError()

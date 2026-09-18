@@ -36,7 +36,7 @@ v2.0
   identifying a task. The UDA type is derived from the field's annotation and
   its label from the field's title.
 - Added ``Service.TASK_SCHEMA``, naming the ``Task`` subclass a service maps to.
-- Added ``Service.process_record(record, extra)``, which maps a record to a
+- Added ``Service.get_task_for_record(record, extra)``, which maps a record to a
   ``Task`` and applies the user's templates. ``Service.issues()`` now yields
   those tasks rather than ``Issue`` objects.
 - Removed the type parameter from ``Service``. Subclasses declare

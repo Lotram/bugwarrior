@@ -244,4 +244,4 @@ class TodoistService(Service):
                 ),
                 "annotations": self.annotations(user_index, issue),
             }
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)

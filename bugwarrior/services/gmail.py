@@ -218,7 +218,7 @@ class GmailService(Service):
         for thread in self.get_threads():
             extra = thread_extras(thread, labels)
             extra["annotations"] = self.annotations(extra)
-            yield self.process_record(thread, extra)
+            yield self.get_task_for_record(thread, extra)
 
 
 def thread_extras(thread: dict[str, Any], labels: dict[str, str]) -> dict[str, Any]:

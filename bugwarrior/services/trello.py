@@ -105,7 +105,7 @@ class TrelloService(Service):
                         "listname": lst["name"],
                         "annotations": self.annotations(card),
                     }
-                    yield self.process_record(card, extra)
+                    yield self.get_task_for_record(card, extra)
 
     def annotations(self, card_json: dict[str, Any]) -> list[str]:
         """A wrapper around get_comments that build the taskwarrior

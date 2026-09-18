@@ -106,7 +106,8 @@ class TestService:
 class TestIssue:
     def test_architecture(self):
         # Each abstract method of Issue is declared here and called once, in
-        # Service.process_record, the one place which maps a record to a task.
+        # Service.get_task_for_record, the one place which maps a record to a
+        # task.
         check_architecture(services.Issue, allowed_references=2)
 
     def test_build_default_description_default(self):

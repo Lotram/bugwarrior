@@ -179,4 +179,4 @@ class KanboardService(Service):
             # Resolve a task's comments.
             extra["annotations"] = self.annotations(task, extra["url"])
 
-            yield self.process_record(task, extra)
+            yield self.get_task_for_record(task, extra)

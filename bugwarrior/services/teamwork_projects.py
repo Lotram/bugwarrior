@@ -128,4 +128,4 @@ class TeamworkService(Service):
                     "host": self.config.host,
                     "annotations": self.get_comments(issue),
                 }
-                yield self.process_record(issue, extra)
+                yield self.get_task_for_record(issue, extra)

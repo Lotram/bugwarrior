@@ -182,4 +182,4 @@ class BTSService(Service):
 
         for issue in issues:
             extra = {"annotations": self.annotations(issue)}
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)

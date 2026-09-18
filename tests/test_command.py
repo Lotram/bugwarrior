@@ -71,7 +71,7 @@ def yields_one(target_specific_url=False):
             record["url"] = f"https://example.com/{self.config.target}"
 
         extra = {"project": "one", "type": "issue", "annotations": []}
-        yield self.process_record(record, extra)
+        yield self.get_task_for_record(record, extra)
 
     return issues
 

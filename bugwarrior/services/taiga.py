@@ -103,7 +103,7 @@ class TaigaService(Service):
                 ),
                 "url": self.build_url(task, project, task_type_short),
             }
-            yield self.process_record(task, extra)
+            yield self.get_task_for_record(task, extra)
 
     def issues(self) -> Iterator[Task]:
         url = self.config.base_uri + "/api/v1/users/me"

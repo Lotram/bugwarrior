@@ -101,4 +101,7 @@ class TestPagureIssue:
         service = make_service(import_tags=True, tag_template="pg_{{label}}")
 
         assert service.config.templates == {}
-        assert service.process_record(record, extra).tags == ["pg_Bug", "pg_Needs_Work"]
+        assert service.get_task_for_record(record, extra).tags == [
+            "pg_Bug",
+            "pg_Needs_Work",
+        ]

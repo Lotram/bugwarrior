@@ -194,7 +194,7 @@ class LinearService(Service):
 
     def issues(self) -> Iterator[Task]:
         for record in self.get_issues():
-            yield self.process_record(record, {})
+            yield self.get_task_for_record(record, {})
 
     def get_issues(self) -> Iterator[dict[str, Any]]:
         """

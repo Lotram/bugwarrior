@@ -76,7 +76,7 @@ class TestYoutrackIssue:
         service = make_service(import_tags=True, tag_template="yt_{{tag|lower}}")
 
         assert service.config.templates == {}
-        assert service.process_record(record, extra).tags == [
+        assert service.get_task_for_record(record, extra).tags == [
             "yt_bug",
             "yt_new_feature",
         ]

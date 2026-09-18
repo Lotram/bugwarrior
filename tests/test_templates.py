@@ -50,7 +50,7 @@ def synchronize(monkeypatch, task):
             overrides["add_tags"] = add_tags
 
         service = get_mock_service(DumbService, overrides)
-        return service.process_record({}, extra).to_taskwarrior_data()
+        return service.get_task_for_record({}, extra).to_taskwarrior_data()
 
     return run
 

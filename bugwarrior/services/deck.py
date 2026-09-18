@@ -192,4 +192,4 @@ class NextcloudDeckService(Service):
                             "annotations": self.annotations(card),
                         }
                         if self.include(card):
-                            yield self.process_record(card, extra)
+                            yield self.get_task_for_record(card, extra)

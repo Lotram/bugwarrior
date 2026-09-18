@@ -229,13 +229,13 @@ Now for the main service class which bugwarrior will invoke to fetch issues.
                   ) for comment in comments['nodes'])
                   issue['annotations'] = self.build_annotations(annotations)
 
-              yield self.process_record(issue)
+              yield self.get_task_for_record(issue)
 
 Here we see four required class attributes and one required method.
 
 The ``API_VERSION`` is set to the latest, while ``ISSUE_CLASS``, ``TASK_SCHEMA`` and ``CONFIG_SCHEMA`` point to our previously defined classes.
 
-The ``issues`` method is a generator which passes each record fetched from the service to ``process_record``, which maps it to a task and applies the user's templates.
+The ``issues`` method is a generator which passes each record fetched from the service to ``get_task_for_record``, which maps it to a task and applies the user's templates.
 
 .. note::
 

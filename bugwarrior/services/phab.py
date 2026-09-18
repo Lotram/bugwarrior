@@ -197,7 +197,7 @@ class PhabricatorService(Service):
                 # 'annotations': self.annotations(phid, issue)
             }
 
-            yield self.process_record(task, extra)
+            yield self.get_task_for_record(task, extra)
 
     def revisions(self) -> Iterator[Task]:
         try:
@@ -252,7 +252,7 @@ class PhabricatorService(Service):
                 "type": "pull_request",
                 # 'annotations': self.annotations(phid, issue)
             }
-            yield self.process_record(diff, extra)
+            yield self.get_task_for_record(diff, extra)
 
     def issues(self) -> Iterator[Task]:
         yield from self.tasks()

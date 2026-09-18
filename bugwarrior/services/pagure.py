@@ -209,4 +209,4 @@ class PagureService(Service):
                 "type": "pull_request" if "branch" in issue else "issue",
                 "annotations": self.annotations(issue),
             }
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)

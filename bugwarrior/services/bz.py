@@ -281,7 +281,7 @@ class BugzillaService(Service):
             else:
                 extra["assigned_on"] = None
 
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)
 
     def _get_assigned_date(self, issue: dict[str, Any]) -> str | None:
         bug = self.bz.getbug(issue["id"])

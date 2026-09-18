@@ -592,7 +592,7 @@ class GitlabService(Service):
                 "annotations": self.annotations(repo, issue_url, type_plural, issue),
                 "description": self.description(issue),
             }
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)
 
     def _get_todo_objs(self, todos: list[GitlabTodoEntry]) -> Iterator[Task]:
         for project, todo in todos:
@@ -609,7 +609,7 @@ class GitlabService(Service):
                 "type": "todo",
                 "annotations": [],
             }
-            yield self.process_record(todo, extra)
+            yield self.get_task_for_record(todo, extra)
 
     def include(self, issue: GitlabIssueEntry) -> bool:
         """Return true if the issue in question should be included"""

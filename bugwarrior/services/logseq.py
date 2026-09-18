@@ -348,4 +348,4 @@ class LogseqService(Service):
                 "graph": graph_name,
                 "page_title": parent_page["originalName"] if parent_page else None,
             }
-            yield self.process_record(issue[0], extra)
+            yield self.get_task_for_record(issue[0], extra)

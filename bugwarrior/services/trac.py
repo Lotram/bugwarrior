@@ -175,4 +175,4 @@ class TracService(Service):
 
         for project, issue in issues:
             extra = {"annotations": self.annotations(issue), "project": project}
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)

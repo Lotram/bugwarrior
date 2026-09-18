@@ -173,4 +173,4 @@ class GitBugService(Service):
                 )
                 issue["annotations"] = self.build_annotations(annotations)
 
-            yield self.process_record(issue)
+            yield self.get_task_for_record(issue)

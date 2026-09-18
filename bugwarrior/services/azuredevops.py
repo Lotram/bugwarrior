@@ -247,4 +247,4 @@ class AzureDevopsService(Service):
                 "annotations": self.annotations(issue),
                 "namespace": f"{self.config.organization}\\{self.config.project}",
             }
-            yield self.process_record(issue, extra)
+            yield self.get_task_for_record(issue, extra)

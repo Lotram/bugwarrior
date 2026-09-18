@@ -209,4 +209,4 @@ class RedMineService(Service):
         )
         log.debug(" Found %i total.", len(issues))
         for issue in issues:
-            yield self.process_record(issue)
+            yield self.get_task_for_record(issue)

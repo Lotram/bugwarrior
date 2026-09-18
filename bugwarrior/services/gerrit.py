@@ -122,7 +122,7 @@ class GerritService(Service):
                 "url": self.build_url(change),
                 "annotations": self.annotations(change),
             }
-            yield self.process_record(change, extra)
+            yield self.get_task_for_record(change, extra)
 
     def build_url(self, change: dict[str, Any]) -> str:
         return f"{self.config.base_uri}/#/c/{change['_number']}/"
