@@ -55,6 +55,7 @@ class TestBTSService:
 
         expected = {
             "annotations": [],
+            "tags": [],
             "btsnumber": 810629,
             "btsforwarded": "",
             "btspackage": "wnpp",

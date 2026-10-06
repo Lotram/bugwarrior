@@ -135,6 +135,7 @@ class TestBugzillaService:
 
         expected = {
             "annotations": [],
+            "tags": [],
             "bugzillabugid": 1234567,
             "bugzillastatus": "NEW",
             "bugzillasummary": "This is the issue summary",
@@ -184,6 +185,7 @@ class TestBugzillaService:
 
         expected = {
             "annotations": [],
+            "tags": [],
             "bugzillaassignedon": ASSIGNED_DATE,
             "bugzillabugid": 1234568,
             "bugzillastatus": "ASSIGNED",

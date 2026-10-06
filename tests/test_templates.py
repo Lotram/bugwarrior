@@ -23,6 +23,7 @@ def expected():
         "project": "end_of_empire",
         "priority": "H",
         "description": DEFAULT_DESCRIPTION,
+        "tags": [],
         "dumburl": "http://example.com",
         "dumbtype": "issue",
     }

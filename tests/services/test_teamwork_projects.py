@@ -129,6 +129,7 @@ class TestTeamworkIssue:
         expected_data = {
             "project": data["project-name"],
             "priority": "H",
+            "tags": [],
             "due": datetime(2019, 12, 12, 10, 6, 31, tzinfo=UTC),
             "entry": datetime(2018, 12, 12, 10, 6, 31, tzinfo=UTC),
             "end": None,

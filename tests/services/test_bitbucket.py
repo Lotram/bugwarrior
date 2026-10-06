@@ -103,6 +103,7 @@ class TestBitbucketIssue:
 
         expected_issue = {
             "annotations": ["@nobody - Some comment."],
+            "tags": [],
             "bitbucketid": 1,
             "bitbuckettitle": "Some Bug",
             "bitbucketurl": "example.com",
@@ -115,6 +116,7 @@ class TestBitbucketIssue:
 
         expected_pr = {
             "annotations": ["@nobody - Some comment."],
+            "tags": [],
             "bitbucketid": 1,
             "bitbuckettitle": "Some Feature",
             "bitbucketurl": "https://bitbucket.org/",

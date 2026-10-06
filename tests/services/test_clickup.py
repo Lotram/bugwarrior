@@ -229,6 +229,7 @@ class TestClickupIssue:
         expected_output = {
             "project": None,
             "priority": "M",
+            "tags": [],
             "due": None,
             "entry": datetime.fromtimestamp(int(record["date_created"]) // 1e3, tz=UTC),
             "description": "(bw)Is# - My task .. https://app.clickup.com/t/86adrdd2j",

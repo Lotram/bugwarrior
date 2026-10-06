@@ -121,6 +121,7 @@ class TestRedmineIssue:
 
         expected = {
             "annotations": [],
+            "tags": [],
             "redmineduedate": None,
             "description": "(bw)Is#363901 - Biscuits .. https://something/issues/363901",
             "priority": "H",

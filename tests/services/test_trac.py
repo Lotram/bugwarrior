@@ -80,6 +80,7 @@ class TestTracIssue:
 
         expected = {
             "annotations": [],
+            "tags": [],
             "description": "(bw)Is#1 - Some Summary .. https://ljlkajsdfl.com/ticket/1",
             "priority": "H",
             "project": "unspecified",

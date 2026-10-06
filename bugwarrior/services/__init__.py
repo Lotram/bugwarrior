@@ -326,10 +326,9 @@ class Service(abc.ABC):
             for tag_template in self.config.add_tags
             if (tag := Template(tag_template).render(context))
         ]
-        if added_tags:
-            # Assign instead of appending: appending to the list does not
-            # mark tags as set, and unset fields are left out of the record.
-            task.tags = [*task.tags, *added_tags]
+        # Assign instead of appending: appending to the list does not mark
+        # tags as set.
+        task.tags = [*task.tags, *added_tags]
 
     def get_task_for_record(
         self, record: dict[str, Any], extra: dict[str, Any] | None = None
