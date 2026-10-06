@@ -198,7 +198,7 @@ class TestAzureDevopsService:
             "adoremainingwork": None,
             "adoparent": None,
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
         assert actual_output == expected
 
     def test_issues(self, service):
@@ -222,7 +222,7 @@ class TestAzureDevopsService:
             "description": "(bw)Impediment#1 - Example Title .. https://dev.azure.com/test_organization/c2957126-cdef-4f9a-bcc8-09323d1b7095/_workitems/edit/1",
         }
         task = next(service.issues())
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     def test_issues_wiql_filter(self, make_service):
         expected = {
@@ -246,4 +246,4 @@ class TestAzureDevopsService:
         }
         service = make_service(wiql_filter="something")
         task = next(service.issues())
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

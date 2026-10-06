@@ -48,7 +48,7 @@ class TestBitbucketIssue:
             "bitbucketid": record["id"],
             "bitbuckettitle": record["title"],
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -111,7 +111,7 @@ class TestBitbucketIssue:
             "project": "somerepo",
         }
 
-        assert issue.to_taskwarrior_data() == expected_issue
+        assert issue.to_task_data() == expected_issue
 
         expected_pr = {
             "annotations": ["@nobody - Some comment."],
@@ -123,7 +123,7 @@ class TestBitbucketIssue:
             "project": "somerepo",
         }
 
-        assert pr.to_taskwarrior_data() == expected_pr
+        assert pr.to_task_data() == expected_pr
 
     def test_get_owner(self, service):
         issue = {"title": "Foobar", "assignee": {"username": "tintin"}}

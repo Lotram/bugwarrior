@@ -126,7 +126,7 @@ class TestBugzillaService:
             "bugzillaneedinfo": None,
             "bugzillaassignedon": None,
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -151,7 +151,7 @@ class TestBugzillaService:
             "project": "Something",
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     def test_only_if_assigned(self, make_service):
         service = make_service(only_if_assigned="hello")
@@ -200,7 +200,7 @@ class TestBugzillaService:
             "project": "Something",
         }
 
-        assert next(issues).to_taskwarrior_data() == expected
+        assert next(issues).to_task_data() == expected
 
         # Only one issue is assigned.
         with pytest.raises(StopIteration):
@@ -235,8 +235,8 @@ class TestBugzillaService:
 
         issues = service.issues()
 
-        assert next(issues).to_taskwarrior_data()["bugzillabugid"] in [1234567, 1234568]
-        assert next(issues).to_taskwarrior_data()["bugzillabugid"] in [1234567, 1234568]
+        assert next(issues).to_task_data()["bugzillabugid"] in [1234567, 1234568]
+        assert next(issues).to_task_data()["bugzillabugid"] in [1234567, 1234568]
         # Only two issues are assigned to the user or unassigned.
         with pytest.raises(StopIteration):
             next(issues)

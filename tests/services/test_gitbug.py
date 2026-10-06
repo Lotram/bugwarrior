@@ -55,7 +55,7 @@ class TestGitBugIssue:
             "project": "unspecified",
             "tags": [],
         }
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
 
         assert actual == expected
 
@@ -77,7 +77,7 @@ class TestGitBugIssue:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
 
 def test_home_path_expansion(tmp_path):

@@ -682,7 +682,7 @@ class TestGitlabIssue:
             "gitlabnamespace": "arbitrary_namespace",
             "gitlabweight": 3,
         }
-        actual_output = gitlab_issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = gitlab_issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -716,7 +716,7 @@ class TestGitlabIssue:
             "gitlabnamespace": "arbitrary_namespace",
             "gitlabweight": 3,
         }
-        actual_output = gitlab_issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = gitlab_issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -753,7 +753,7 @@ class TestGitlabIssue:
             "gitlabnamespace": "arbitrary_namespace",
             "gitlabweight": None,  # Currently not parsed for ToDos
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -788,7 +788,7 @@ class TestGitlabIssue:
             "gitlabnamespace": "arbitrary_namespace",
             "gitlabweight": 3,
         }
-        actual_output = gitlab_issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = gitlab_issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -822,7 +822,7 @@ class TestGitlabIssue:
             "gitlabnamespace": "arbitrary_namespace",
             "gitlabweight": 3,
         }
-        actual_output = gitlab_issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = gitlab_issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -876,7 +876,7 @@ class TestGitlabIssue:
             "project": "arbitrary_username/project",
             "tags": [],
         }
-        assert gitlab_issue.to_taskwarrior_data() == expected
+        assert gitlab_issue.to_task_data() == expected
 
     @responses.activate
     def test_mrs_from_query(self, mr, make_service):
@@ -934,7 +934,7 @@ class TestGitlabIssue:
             "project": "arbitrary_username/project",
             "tags": [],
         }
-        assert gitlab_mr.to_taskwarrior_data() == expected
+        assert gitlab_mr.to_task_data() == expected
 
     @responses.activate
     def test_todos_from_query(self, todo, make_service):
@@ -998,7 +998,7 @@ class TestGitlabIssue:
             "project": "project",
             "tags": [],
         }
-        assert gitlab_todo.to_taskwarrior_data() == expected
+        assert gitlab_todo.to_task_data() == expected
 
         overrides = {
             "include_issues": "false",
@@ -1009,7 +1009,7 @@ class TestGitlabIssue:
         }
         service = make_service(**overrides)
         gitlab_todo = next(service.issues())
-        assert gitlab_todo.to_taskwarrior_data() == expected
+        assert gitlab_todo.to_task_data() == expected
 
     @responses.activate
     def test_issues(self, service, issue):
@@ -1066,7 +1066,7 @@ class TestGitlabIssue:
             "tags": [],
         }
 
-        assert gitlab_issue.to_taskwarrior_data() == expected
+        assert gitlab_issue.to_task_data() == expected
 
     @responses.activate
     def test_only_if_assigned_user_lookup(self, make_service):

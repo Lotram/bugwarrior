@@ -137,7 +137,7 @@ class TestDeckIssue:
             "project": "testboard",
             "tags": ["Later"],
         }
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
 
         assert actual == expected
 
@@ -164,7 +164,7 @@ class TestDeckIssue:
             "tags": ["Later"],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     def test_get_owner(self, config, record, make_service):
         config["myservice"]["only_if_assigned"] = "rainbow"

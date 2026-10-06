@@ -270,7 +270,7 @@ class TestPivotalTrackerIssue:
             "project": "death_star",
             "tags": ["look_sir_metal"],
         }
-        actual_output = story.to_taskwarrior().to_taskwarrior_data()
+        actual_output = story.to_taskwarrior().to_task_data()
         assert actual_output == expected_output
 
     def test_issues(self, service):
@@ -302,4 +302,4 @@ class TestPivotalTrackerIssue:
             "project": "death_star",
             "tags": ["look_sir_metal"],
         }
-        assert story.to_taskwarrior_data() == expected
+        assert story.to_task_data() == expected

@@ -155,7 +155,7 @@ class TestGmailIssue:
             "gmaillastsenderaddr": "foobar@example.com",
         }
 
-        taskwarrior = issue.to_taskwarrior().to_taskwarrior_data()
+        taskwarrior = issue.to_taskwarrior().to_task_data()
         taskwarrior["tags"] = set(taskwarrior["tags"])
 
         assert taskwarrior == expected
@@ -178,7 +178,7 @@ class TestGmailIssue:
             "gmaillastsenderaddr": "foobar@example.com",
         }
 
-        taskwarrior = task.to_taskwarrior_data()
+        taskwarrior = task.to_task_data()
         taskwarrior["tags"] = set(taskwarrior["tags"])
 
         assert taskwarrior == expected

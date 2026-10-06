@@ -63,14 +63,14 @@ class TestRedmineHours:
 
         task_data = service.get_issue_for_record(record).to_taskwarrior()
 
-        data = task_data.to_taskwarrior_data()
+        data = task_data.to_task_data()
         assert data["redminespenthours"] == expected
         assert data["redmineestimatedhours"] == expected
 
     def test_absent_hours_are_empty(self, service, record):
         data = service.get_issue_for_record(record).to_taskwarrior()
 
-        task_data = data.to_taskwarrior_data()
+        task_data = data.to_task_data()
         assert task_data["redminespenthours"] is None
         assert task_data["redmineestimatedhours"] is None
 
@@ -107,7 +107,7 @@ class TestRedmineIssue:
             return arbitrary_url
 
         with mock.patch.object(issue, "get_issue_url", side_effect=get_url):
-            actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+            actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -142,4 +142,4 @@ class TestRedmineIssue:
             "redmineurl": "https://something/issues/363901",
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

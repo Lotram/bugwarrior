@@ -84,7 +84,7 @@ class TestGithubIssue:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     def test_to_taskwarrior(self, make_service, record, extra):
         service = make_service(import_labels_as_tags=True)
@@ -112,7 +112,7 @@ class TestGithubIssue:
             "githubnamespace": "arbitrary_username",
             "githubstate": "closed",
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -170,7 +170,7 @@ class TestGithubIssue:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
 
 class TestGithubIssueQuery:
@@ -223,7 +223,7 @@ class TestGithubIssueQuery:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
 
 class TestGithubService:

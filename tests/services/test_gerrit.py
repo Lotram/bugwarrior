@@ -67,7 +67,7 @@ class TestGerritIssue:
 
     def test_to_taskwarrior(self, service, record, extra):
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         expected = {
             "annotations": [],
             "priority": "M",
@@ -92,7 +92,7 @@ class TestGerritIssue:
 
         data = service.get_issue_for_record(record, extra).to_taskwarrior()
 
-        assert data.to_taskwarrior_data()[f"gerrit{field}"] is None
+        assert data.to_task_data()[f"gerrit{field}"] is None
 
     def test_work_in_progress(self, service, record, extra):
         record["work_in_progress"] = True
@@ -113,7 +113,7 @@ class TestGerritIssue:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     @responses.activate
     def test_issues(self, service, record):
@@ -140,4 +140,4 @@ class TestGerritIssue:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

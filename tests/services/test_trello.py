@@ -53,7 +53,7 @@ class TestTrelloIssue:
     def test_to_taskwarrior__project(self, issue):
         """By default, the project is the board name"""
         expected_project = "Hyperspatial express route"
-        assert expected_project == issue.to_taskwarrior().to_taskwarrior_data().get(
+        assert expected_project == issue.to_taskwarrior().to_task_data().get(
             "project", None
         )
 
@@ -230,7 +230,7 @@ class TestTrelloService:
             "annotations": ["@luidgi - Preums", "@mario - Deuz"],
             "tags": [],
         }
-        actual = next(issues).to_taskwarrior_data()
+        actual = next(issues).to_task_data()
         assert expected == actual
 
     def test_validate_config(self, config):

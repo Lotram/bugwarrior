@@ -44,7 +44,7 @@ class TestPagureIssue:
             "pagureid": 1,
             "paguredatecreated": datetime.datetime(1970, 1, 1, tzinfo=datetime.UTC),
         }
-        assert issue.to_taskwarrior().to_taskwarrior_data() == expected
+        assert issue.to_taskwarrior().to_task_data() == expected
 
     @responses.activate
     def test_issues(self, service):
@@ -81,7 +81,7 @@ class TestPagureIssue:
             "pagureid": 1,
             "paguredatecreated": datetime.datetime(1970, 1, 1, tzinfo=datetime.UTC),
         }
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     def test_get_tags_from_labels_uses_legacy_tag_options(
         self, caplog, make_service, record, extra

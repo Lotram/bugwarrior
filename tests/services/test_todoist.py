@@ -136,7 +136,7 @@ class TestTodoistIssue:
             "todoistparentid": None,
         }
 
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
 
         assert actual == expected
 
@@ -145,21 +145,21 @@ class TestTodoistIssue:
         overrides = {"import_labels_as_tags": "True"}
         service = make_service(**overrides)
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         assert actual.get("tags") == ["TESTLABEL"]
 
     def test_to_taskwarrior_task_with_low_priority(self, service, record, extra):
         # Test with priority set to lowest (1 in the API, which is P4 on the Todoist UI)
         record["priority"] = 1
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         assert actual.get("priority") is None
 
     def test_to_taskwarrior_subtask(self, service, record, extra):
         # subtasks have a parent id
         record["parent_id"] = "1212121212121212"
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         assert actual.get("todoistparentid") == "1212121212121212"
         assert (
             issue.get_default_description() == "(bw)Subtask ##1111111111111111"
@@ -199,4 +199,4 @@ class TestTodoistIssue:
             "todoistparentid": None,
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

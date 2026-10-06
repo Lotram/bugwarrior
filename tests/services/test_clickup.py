@@ -187,7 +187,7 @@ class TestClickupNullableFields:
 
         data = service.get_issue_for_record(record).to_taskwarrior()
 
-        assert data.to_taskwarrior_data()["clickupdescription"] is None
+        assert data.to_task_data()["clickupdescription"] is None
 
 
 class TestClickupIssue:
@@ -213,7 +213,7 @@ class TestClickupIssue:
             "clickupspace": record["space"]["id"],
             "clickupname": record["name"],
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -247,4 +247,4 @@ class TestClickupIssue:
             "clickupname": record["name"],
         }
 
-        assert task.to_taskwarrior_data() == expected_output
+        assert task.to_task_data() == expected_output

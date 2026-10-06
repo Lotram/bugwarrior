@@ -314,7 +314,7 @@ Create a test file. Declare ``SERVICE_CLASS`` and ``SERVICE_CONFIG`` at module l
 
           expected = { ... }
 
-          actual = issue.to_taskwarrior().to_taskwarrior_data()
+          actual = issue.to_taskwarrior().to_task_data()
 
           assert actual == expected
 
@@ -325,7 +325,7 @@ Create a test file. Declare ``SERVICE_CLASS`` and ``SERVICE_CONFIG`` at module l
 
           expected = { ... }
 
-          assert task.to_taskwarrior_data() == expected
+          assert task.to_task_data() == expected
 
 11. Documentation
 -----------------

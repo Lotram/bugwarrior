@@ -95,7 +95,7 @@ class TestYoutrackIssue:
             "youtrackproject": "TEST",
             "youtracknumber": "1",
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -120,4 +120,4 @@ class TestYoutrackIssue:
             "youtracknumber": "1",
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

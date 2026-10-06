@@ -115,7 +115,7 @@ class TestTeamworkIssue:
             "teamwork_id": int(data["id"]),
             "annotations": ["@Greg McCoy - Test comment", "@Bob Test - testing"],
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
         assert actual_output == expected_data
 
     @responses.activate
@@ -142,4 +142,4 @@ class TestTeamworkIssue:
             "teamwork_id": int(data["id"]),
             "annotations": ["@Demo User - A test comment"],
         }
-        assert task.to_taskwarrior_data() == expected_data
+        assert task.to_task_data() == expected_data

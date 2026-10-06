@@ -35,7 +35,7 @@ class TestTaigaIssue:
         }
 
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         expected = {
             "annotations": [],
             "priority": "M",
@@ -84,4 +84,4 @@ class TestTaigaIssue:
             "due": DUE,
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

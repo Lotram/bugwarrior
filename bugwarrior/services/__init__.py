@@ -306,8 +306,10 @@ class Service(abc.ABC):
         computed data does not hide it.
         """
         context = {
-            **task.to_taskwarrior_data(),
-            # A service which never assigns tags emits no "tags" in its record.
+            **task.to_task_data(),
+            # to_task_data leaves out the fields the service never set,
+            # so a service which assigns no tags emits no "tags". Add the list
+            # back, so that every template can use "tags".
             "tags": task.tags,
             **extra,
             "description": task.description,

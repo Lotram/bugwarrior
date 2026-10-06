@@ -35,7 +35,7 @@ class TestPhabricatorIssue:
             "priority": "M",
             "annotations": [],
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 

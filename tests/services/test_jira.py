@@ -159,7 +159,7 @@ class TestJiraIssue:
             return url
 
         with mock.patch.object(issue, "get_url", side_effect=get_url):
-            actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+            actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -202,7 +202,7 @@ class TestJiraIssue:
             return url
 
         with mock.patch.object(issue, "get_url", side_effect=get_url):
-            actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+            actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -233,7 +233,7 @@ class TestJiraIssue:
             "tags": [],
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     def test_get_due(self, service, record_with_due):
         issue = service.get_issue_for_record(

@@ -178,7 +178,7 @@ class Task(BaseModel):
     def get_unique_key(cls) -> tuple[str, ...]:
         return cls.get_udas_model().UNIQUE_KEY
 
-    def to_taskwarrior_data(self) -> dict[str, Any]:
+    def to_task_data(self) -> dict[str, Any]:
         """Return a flat dictionary suitable for Taskwarrior synchronization.
 
         Standard fields are written only when they were set. Every UDA is
@@ -190,7 +190,7 @@ class Task(BaseModel):
         return data
 
     def unique_identifier(self) -> str:
-        data = self.to_taskwarrior_data()
+        data = self.to_task_data()
         return json.dumps(
             {key: data[key] for key in self.get_unique_key()}, sort_keys=True
         )

@@ -45,7 +45,7 @@ class TestBTSService:
             "btsforwarded": FakeBTSBug.forwarded,
             "btsstatus": FakeBTSBug.pending,
         }
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
 
         assert actual_output == expected_output
 
@@ -73,4 +73,4 @@ class TestBTSService:
             "btsstatus": "pending",
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

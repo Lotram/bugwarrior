@@ -113,7 +113,7 @@ class TestLogseqIssue:
             "logseqpage": "TestPageTitle",
         }
 
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
 
         assert actual == expected
 
@@ -133,21 +133,21 @@ class TestLogseqIssue:
         service = make_service(**overrides)
         issue = service.get_issue_for_record(record, extra)
 
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         assert actual["tags"] == ["Testtagone", "TestTagTwo", "TestTagThree"]
 
     def test_to_taskwarrior_todo(self, service, record, extra):
         record["content"] = "TODO test task in todo state\n"
         record["marker"] = "TODO"
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         assert actual["status"] == "pending"
 
     def test_to_taskwarrior_waiting(self, service, record, extra):
         record["content"] = "WAITING test task in waiting state\n"
         record["marker"] = "WAITING"
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
         assert actual["status"] == "pending"
         assert actual["wait"] == LogseqIssue.SOMEDAY
 
@@ -159,7 +159,7 @@ class TestLogseqIssue:
         )
 
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
 
         scheduled = datetime.datetime(year=2025, month=7, day=1, hour=12, minute=30)
         deadline = datetime.datetime(year=2025, month=7, day=31, hour=12, minute=30)
@@ -176,7 +176,7 @@ class TestLogseqIssue:
         )
 
         issue = service.get_issue_for_record(record, extra)
-        actual = issue.to_taskwarrior().to_taskwarrior_data()
+        actual = issue.to_taskwarrior().to_task_data()
 
         scheduled = datetime.datetime(year=2025, month=7, day=1, hour=12, minute=30)
         deadline = datetime.datetime(year=2025, month=7, day=31)
@@ -216,4 +216,4 @@ class TestLogseqIssue:
             "logseqpage": "Jul 1st, 2025",
         }
 
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected

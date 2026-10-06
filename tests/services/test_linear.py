@@ -172,7 +172,7 @@ class TestLinearIssue:
         }
 
         issue = service.get_issue_for_record(record, {})
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
         assert actual_output == expected_output
 
         record = RESPONSE["data"]["issues"]["nodes"][1]
@@ -201,7 +201,7 @@ class TestLinearIssue:
         }
 
         issue = service.get_issue_for_record(record, {})
-        actual_output = issue.to_taskwarrior().to_taskwarrior_data()
+        actual_output = issue.to_taskwarrior().to_task_data()
         assert actual_output == expected_output
 
     def test_issues(self, service):
@@ -230,7 +230,7 @@ class TestLinearIssue:
             "project": "prj",
             "tags": [],
         }
-        assert task.to_taskwarrior_data() == expected
+        assert task.to_task_data() == expected
 
     # Linear priority integers must map onto taskwarrior's H/M/L buckets,
     # with "No priority" (0) falling back to the service-wide default.
@@ -247,9 +247,7 @@ class TestLinearIssue:
     def test_priority_mapping(self, service, linear_priority, expected):
         record = {**RESPONSE["data"]["issues"]["nodes"][0], "priority": linear_priority}
         task_data = (
-            service.get_issue_for_record(record, {})
-            .to_taskwarrior()
-            .to_taskwarrior_data()
+            service.get_issue_for_record(record, {}).to_taskwarrior().to_task_data()
         )
         assert task_data["priority"] == expected
 
@@ -262,9 +260,7 @@ class TestLinearIssue:
             if k != "priority"
         }
         task_data = (
-            service.get_issue_for_record(record, {})
-            .to_taskwarrior()
-            .to_taskwarrior_data()
+            service.get_issue_for_record(record, {}).to_taskwarrior().to_task_data()
         )
         assert task_data["priority"] == "M"
 

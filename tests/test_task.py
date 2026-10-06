@@ -23,7 +23,7 @@ class SampleTask(Task):
 def test_generic_fields_are_coerced():
     task = Task(priority="", status="PENDING", due="2026-05-20")
 
-    data = task.to_taskwarrior_data()
+    data = task.to_task_data()
     assert data["priority"] is None  # blank priority means no priority
     assert data["status"] == "pending"
     assert data["due"].tzinfo is not None  # naive input gets UTC
@@ -33,7 +33,7 @@ def test_generic_fields_are_coerced():
 def test_unset_generic_fields_are_omitted():
     # Only explicitly set fields are emitted, so legacy sparse records are
     # preserved.
-    assert Task(project="foundation").to_taskwarrior_data() == {"project": "foundation"}
+    assert Task(project="foundation").to_task_data() == {"project": "foundation"}
 
 
 def test_udas_are_flattened_and_always_emitted():
@@ -42,7 +42,7 @@ def test_udas_are_flattened_and_always_emitted():
         udas=SampleUdas(sampleurl="http://example.com", samplenumber=7),
     )
 
-    assert task.to_taskwarrior_data() == {
+    assert task.to_task_data() == {
         "project": "foundation",
         # every UDA is emitted, even the unset one
         "samplenumber": 7,
@@ -81,7 +81,7 @@ DURATIONS = [
 def test_duration_is_emitted_as_iso_8601(spent, expected):
     task = SampleTask(udas=SampleUdas(samplespent=spent))
 
-    assert task.to_taskwarrior_data()["samplespent"] == expected
+    assert task.to_task_data()["samplespent"] == expected
 
 
 @pytest.mark.parametrize(("spent", "expected"), DURATIONS)
@@ -92,7 +92,7 @@ def test_duration_round_trips_through_taskwarrior(config_environment, spent, exp
     It accepts several forms but saves only one of them. Write another one
     and the task looks changed on every sync, and is updated again and again.
     """
-    emitted = SampleTask(udas=SampleUdas(samplespent=spent)).to_taskwarrior_data()[
+    emitted = SampleTask(udas=SampleUdas(samplespent=spent)).to_task_data()[
         "samplespent"
     ]
     tw = TaskWarriorShellout(
@@ -163,7 +163,7 @@ def test_a_schema_without_a_unique_key_is_an_error():
 
 def test_unique_identifier_is_not_emitted_to_taskwarrior():
     # It identifies the task for matching; it is not a field of the record.
-    assert "unique_identifier" not in Task().to_taskwarrior_data()
+    assert "unique_identifier" not in Task().to_task_data()
 
 
 def test_unknown_field_is_rejected():

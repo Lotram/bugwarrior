@@ -213,7 +213,7 @@ def synchronize(
     for collected in issue_map.values():
         target = collected.target
 
-        task_data = collected.task.to_taskwarrior_data()
+        task_data = collected.task.to_task_data()
         # We received this issue from The Internet, but we're not sure what
         # kind of encoding the service providers may have handed us. Let's try
         # and decode all byte strings from UTF8 off the bat.  If we encounter
